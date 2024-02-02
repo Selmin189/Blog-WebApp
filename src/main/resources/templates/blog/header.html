@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head th:fragment="header">
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>Kosovita</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/vendor.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <!-- script
+    ================================================== -->
+    <script src="/js/modernizr.js"></script>
+</head>
+<body>
+<header class="s-header" th:fragment="navbar">
+    <div class="header__top">
+        <div class="header__logo">
+            <a class="site-logo" href="#" th:href="@{/}">
+                <img src="/images/kosovita1.svg" alt="Homepage">
+            </a>
+        </div>
+    </div> <!-- end header__top -->
+    <nav class="header__nav-wrap">
+        <ul class="header__nav">
+            <li class="current"><a href="#" th:href="@{/}" title="">Home</a></li>
+                            <li class="has-children">
+                                <a href="#" title="">Blog Posts</a>
+                                <ul class="sub-menu">
+                                    <li><a href="#" th:href="@{/post/category/1}">Science</a></li>
+                                    <li><a href="#" th:href="@{/post/category/2}">Art</a></li>
+                                    <li><a href="#" th:href="@{/post/category/3}">Sport</a></li>
+                                </ul>
+                            </li>
+            <li><a href="#" th:href="@{/about}">About</a></li>
+            <li><a href="#" th:href="@{/contact}">Contact</a></li>
+            <li><a href="#" th:href="@{/register}" >Register</a></li>
+            <li><a href="#" th:href="@{/login}">Login</a></li>
+        </ul> <!-- end header__nav -->
+        <ul class="header__social">
+            <li class="ss-facebook">
+                <a href="https://facebook.com/">
+                    <span class="screen-reader-text">Facebook</span>
+                </a>
+            </li>
+            <li class="ss-twitter">
+                <a href="#">
+                    <span class="screen-reader-text">Twitter</span>
+                </a>
+            </li>
+            <li class="ss-dribbble">
+                <a href="#">
+                    <span class="screen-reader-text">Dribbble</span>
+                </a>
+            </li>
+            <li class="ss-pinterest">
+                <a href="#">
+                    <span class="screen-reader-text">Behance</span>
+                </a>
+            </li>
+        </ul>
+    </nav> <!-- end header__nav-wrap -->
+    <!-- menu toggle -->
+    <a href="#" class="header__menu-toggle">
+        <span>Menu</span>
+    </a>
+</header> <!-- end s-header -->
+</body>
+</html>

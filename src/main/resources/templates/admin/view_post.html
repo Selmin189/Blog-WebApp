@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+>
+<div th:replace="admin/header :: header"></div>
+<body>
+<div th:replace="admin/header :: navbar"></div>
+<div class="s-content content">
+    <main class="row content__page">
+        <article class="column large-full entry format-standard">
+            <div class="media-wrap entry__media">
+                <div class="entry__post-thumb">
+                    <img class="card-img-top" width="900px" height=450px;
+                         th:src="${post?.imageUrl}"
+                         alt="Card image cap">
+                </div>
+            </div>
+            <div class="content__page-header entry__header">
+                <h1 class="display-1 entry__title" th:text="${post?.title}">
+                </h1>
+                <ul class="entry__header-meta">
+                    <li class="date"><p class="card-text"
+                                        th:text="${#temporals.format(post?.createdOn, 'dd MMMM yyyy')}">
+                    </li>
+                </ul>
+            </div> <!-- end entry__header -->
+            <div class="entry__content">
+                <div class="lead drop-cap" th:text="${post?.shortDescription}">
+                </div>
+                <div th:utext="${post?.content}">
+                </div>
+            </div>
+            <br>
+        </article> <!-- end column large-full entry-->
+    </main>
+</div>
+<div th:replace="footer :: footer"></div>
+</body>
+</html>

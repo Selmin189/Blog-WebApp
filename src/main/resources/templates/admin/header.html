@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head th:fragment="header">
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>Kosovita</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/vendor.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- script
+    ================================================== -->
+    <script src="/js/modernizr.js"></script>
+
+
+</head>
+<body>
+<header class="s-header" th:fragment="navbar">
+    <div class="header__top">
+        <div class="header__logo">
+            <a class="site-logo" href="#" th:href="@{/admin/posts}">
+                <img src="/images/kosovita1.svg" alt="Homepage">
+            </a>
+        </div>
+    </div> <!-- end header__top -->
+
+    <nav class="header__nav-wrap">
+
+        <ul class="header__nav">
+            <li class="current"><a href="#" title="">Home</a></li>
+            <!--                <li class="has-children">-->
+            <!--                    <a href="#0" title="">Blog Posts</a>-->
+            <!--                    <ul class="sub-menu">-->
+            <!--                        <li><a href="single-video.html">Video Post</a></li>-->
+            <!--                        <li><a href="single-audio.html">Audio Post</a></li>-->
+            <!--                        <li><a href="single-gallery.html">Gallery Post</a></li>-->
+            <!--                        <li><a href="single-standard.html">Standard Post</a></li>-->
+            <!--                    </ul>-->
+            <!--                </li>-->
+            <li><a href="#" th:href="@{/admin/posts}" >Posts</a></li>
+            <li><a href="#" th:href="@{/admin/posts/newpost}" >Create Post</a></li>
+            <li><a href="#" th:href="@{/admin/posts/comments}" >Comments</a></li>
+            <li><a href="#" th:href="@{/logout}" >Logout</a></li>
+        </ul> <!-- end header__nav -->
+
+        <ul class="header__social">
+            <li class="ss-facebook">
+                <a href="https://facebook.com/">
+                    <span class="screen-reader-text">Facebook</span>
+                </a>
+            </li>
+            <li class="ss-twitter">
+                <a href="#0">
+                    <span class="screen-reader-text">Twitter</span>
+                </a>
+            </li>
+            <li class="ss-dribbble">
+                <a href="#0">
+                    <span class="screen-reader-text">Dribbble</span>
+                </a>
+            </li>
+            <li class="ss-pinterest">
+                <a href="#0">
+                    <span class="screen-reader-text">Behance</span>
+                </a>
+            </li>
+        </ul>
+
+    </nav> <!-- end header__nav-wrap -->
+
+    <!-- menu toggle -->
+    <a href="#0" class="header__menu-toggle">
+        <span>Menu</span>
+    </a>
+
+</header> <!-- end s-header -->
+</body>
+</html>

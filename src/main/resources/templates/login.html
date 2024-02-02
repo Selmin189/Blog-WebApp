@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head th:fragment="header">
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>Kosovita</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/vendor.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- script
+    ================================================== -->
+    <script src="/js/modernizr.js"></script>
+
+    <!-- favicons
+    ================================================== -->
+
+
+</head>
+<body>
+<header class="s-header" th:fragment="navbar">
+    <div class="header__top">
+        <div class="header__logo">
+            <a class="site-logo" href="#" th:href="@{/}">
+                <img src="/images/kosovita1.svg" alt="Homepage">
+            </a>
+        </div>
+    </div> <!-- end header__top -->
+
+    <nav class="header__nav-wrap">
+
+        <ul class="header__nav">
+            <li class="current"><a href="#" th:href="@{/}" title="">Home</a></li>
+            <li><a href="#" th:href="@{/}">Blog Posts</a></li>
+            <li><a href="#" th:href="@{/register}" >Register</a></li>
+        </ul> <!-- end header__nav -->
+
+        <ul class="header__social">
+            <li class="ss-facebook">
+                <a href="https://facebook.com/">
+                    <span class="screen-reader-text">Facebook</span>
+                </a>
+            </li>
+            <li class="ss-twitter">
+                <a href="#0">
+                    <span class="screen-reader-text">Twitter</span>
+                </a>
+            </li>
+            <li class="ss-dribbble">
+                <a href="#0">
+                    <span class="screen-reader-text">Dribbble</span>
+                </a>
+            </li>
+            <li class="ss-pinterest">
+                <a href="#0">
+                    <span class="screen-reader-text">Behance</span>
+                </a>
+            </li>
+        </ul>
+
+    </nav> <!-- end header__nav-wrap -->
+
+    <!-- menu toggle -->
+    <a href="#0" class="header__menu-toggle">
+        <span>Menu</span>
+    </a>
+
+</header> <!-- end s-header -->
+<div class="s-content content">
+    <main class="row content__page">
+        <section class="column large-full entry format-standard">
+            <div th:if="${param.error}">
+                <div class="alert alert-danger">Invalid email or password.</div>
+            </div>
+            <div th:if="${param.logout}">
+                <div class="alert alert-success"> You have been logged out.</div>
+            </div>
+            <h3 class="h2">Log In Form</h3>
+            <form method="post"
+                  th:action="@{/login}"
+                  class="form-horizontal"
+                  role="form"
+                  autocomplete="off">
+                <fieldset>
+                    <div class="form-field">
+                        <input  type="text"
+                                id="username"
+                                name="username"
+                                class="full-width" placeholder="Your Email" value="">
+                    </div>
+                    <div class="form-field">
+                        <input type="password"
+                               id="password"
+                               name="password"
+                               placeholder="Enter password"
+                               class="full-width">
+                    </div>
+                    <button name="submit" id="submit" class="btn btn--primary btn-wide btn--large full-width" value="Login" type="submit">Log In</button>
+                </fieldset>
+            </form> <!-- end form -->
+        </section>
+    </main>
+</div> <!-- end s-content -->
+<div th:replace="footer :: footer"></div>
+</body>
+</html>

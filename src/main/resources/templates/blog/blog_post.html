@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<div th:replace="blog/header :: header"></div>
+<body>
+<div id="top" class="s-wrap site-wrapper">
+    <!-- site header
+    ================================================== -->
+    <div th:replace="blog/header :: navbar"></div>
+
+    <div th:replace="blog/search :: search"></div>
+    <!-- site content
+    ================================================== -->
+    <div class="s-content content">
+        <main class="row content__page">
+            <article class="column large-full entry format-standard">
+                <div class="media-wrap entry__media">
+                    <div class="entry__post-thumb">
+                        <img class="card-img-top" width="900px" height=450px;
+                             th:src="${post?.imageUrl}"
+                             alt="Card image cap">
+                    </div>
+                </div>
+                <div class="content__page-header entry__header">
+                    <h1 class="display-1 entry__title" th:text="${post?.title}">
+                    </h1>
+                    <ul class="entry__header-meta">
+                        <li class="date"><p class="card-text"
+                                            th:text="${#temporals.format(post?.createdOn, 'dd MMMM yyyy')}">
+                            <p/></li>
+                    </ul>
+                </div> <!-- end entry__header -->
+                <div class="entry__content">
+                    <div class="lead drop-cap" th:text="${post?.shortDescription}">
+                    </div>
+                    <br>
+                    <div th:utext="${post?.content}">
+                    </div>
+                </div>
+            </article> <!-- end column large-full entry-->
+            <div class="comments-wrap">
+                <h3 class="h2">Comments</h3>
+                <div id="comments" class="column large-12">
+                    <!-- START commentlist -->
+                    <ol class="commentlist">
+                        <div th:each="comment: ${post?.comments}">
+                            <li class="depth-1 comment">
+                                <div class="comment__content">
+                                    <div class="comment__info">
+                                        <div class="comment__author" th:text="${comment.name}"></div>
+                                        <div class="comment__meta">
+                                            <div class="comment__time"
+                                                 th:text="${#temporals.format(comment.createdOn, 'dd MMMM yyyy')}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="comment__text">
+                                        <p th:text="${comment.content}"></p>
+                                    </div>
+                                </div>
+                            </li> <!-- end comment level 1 -->
+                            <hr>
+                        </div>
+                    </ol>
+                </div> <!-- end comments -->
+                <div class="column large-12 comment-respond">
+                    <!-- START respond -->
+                    <div id="respond">
+                        <h3 class="h2">Add Comment <span>Your email address will not be published</span></h3>
+                        <form name="contactForm" id="contactForm" action="" autocomplete="off"
+                              role="form"
+                              method="post"
+                              th:action="@{/{postUrl}/comments(postUrl=${post?.url})}"
+                              th:object="${comment}">
+                            <fieldset>
+                                <div class="form-field">
+                                    <input id="name"
+                                           name="name"
+                                           th:field="*{name}"
+                                           type="text" class="full-width" placeholder="Your Name" value=""
+                                    />
+                                    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></p>
+                                </div>
+                                <div class="form-field">
+                                    <input id="email"
+                                           name="email"
+                                           th:field="*{email}"
+                                           class="full-width"
+                                           placeholder="Your Email" value=""
+                                           type="text">
+                                    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                                       class="text-danger"></p>
+                                </div>
+                                <div class="message form-field">
+                                <textarea id="content"
+                                          name="content"
+                                          placeholder="Enter comment"
+                                          rows="8"
+                                          th:field="*{content}"
+                                          class="full-width">
+
+                                </textarea>
+                                    <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}"
+                                       class="text-danger"></p>
+                                </div>
+                                <input name="submit" id="submit" class="btn btn--primary btn-wide btn--large full-width"
+                                       value="Add Comment" type="submit">
+                            </fieldset>
+                        </form> <!-- end form -->
+                    </div>
+                    <!-- END respond-->
+                </div> <!-- end comment-respond -->
+            </div> <!-- end comments-wrap -->
+        </main>
+    </div> <!-- end s-content -->
+    <div th:replace="footer :: footer"></div>
+</div>
+</body>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/plugins.js"></script>
+<script src="/js/main.js"></script>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head th:fragment="header">
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>Kosovita</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/vendor.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- script
+    ================================================== -->
+    <script src="/js/modernizr.js"></script>
+
+
+</head>
+<body>
+<header class="s-header" th:fragment="navbar">
+    <div class="header__top">
+        <div class="header__logo">
+            <a class="site-logo" href="#" th:href="@{/}">
+                <img src="/images/kosovita1.svg" alt="Homepage">
+            </a>
+        </div>
+    </div> <!-- end header__top -->
+    <nav class="header__nav-wrap">
+        <ul class="header__nav">
+            <li class="current"><a href="#" th:href="@{/}">Home</a></li>
+            <li><a href="#" th:href="@{/}">Blog Posts</a></li>
+            <li><a href="#" th:href="@{/login}">Login</a></li>
+        </ul> <!-- end header__nav -->
+        <ul class="header__social">
+            <li class="ss-facebook">
+                <a href="https://facebook.com/">
+                    <span class="screen-reader-text">Facebook</span>
+                </a>
+            </li>
+            <li class="ss-twitter">
+                <a href="#0">
+                    <span class="screen-reader-text">Twitter</span>
+                </a>
+            </li>
+            <li class="ss-dribbble">
+                <a href="#0">
+                    <span class="screen-reader-text">Dribbble</span>
+                </a>
+            </li>
+            <li class="ss-pinterest">
+                <a href="#0">
+                    <span class="screen-reader-text">Behance</span>
+                </a>
+            </li>
+        </ul>
+
+    </nav> <!-- end header__nav-wrap -->
+    <!-- menu toggle -->
+    <a href="#0" class="header__menu-toggle">
+        <span>Menu</span>
+    </a>
+</header> <!-- end s-header -->
+<div class="s-content content">
+    <main class="row content__page">
+        <div th:if="${param.success}">
+            <div class="alert alert-info">
+                You have registered successfully to our Blog app!
+            </div>
+            <!-- Redirektovanje na stranicu za prijavljivanje -->
+            <script th:inline="javascript">
+                /*<![CDATA[*/
+                setTimeout(function() {
+                    window.location.href = /*@{/login}*/ '/login';
+                }, 1600);
+                /*]]>*/
+            </script>
+        </div>
+        <section class="column large-full entry format-standard">
+            <h3 class="h2">Registration</h3>
+            <form name="contactForm"
+                  id="contactForm"
+                  method="post"
+                  role="form"
+                  th:action="@{/register/save}"
+                  th:object="${user}"
+                  autocomplete="off">
+                <fieldset>
+                    <div class="form-field">
+                        <input id="firstName"
+                               name="firstName"
+                               type="text"
+                               th:field="*{firstName}" class="full-width" placeholder="Your First Name" value="">
+                    </div>
+                    <p th:if="${#fields.hasErrors('firstName')}" class="text-danger"
+                       th:errors="*{firstName}"></p>
+                    <div class="form-field">
+                        <input id="lastName"
+                               name="lastName"
+                               th:field="*{lastName}"
+                               class="full-width"
+                               placeholder="Your Last Name"
+                               value=""
+                               type="text">
+                    </div>
+                    <p th:if="${#fields.hasErrors('lastName')}" class="text-danger"
+                       th:errors="*{lastName}"></p>
+                    <div class="form-field">
+                        <input  id="email"
+                                name="email"
+                                type="email"
+                                th:field="*{email}" class="full-width" placeholder="Your Email" value="">
+                    </div>
+                    <p th:if="${#fields.hasErrors('email')}" class="text-danger"
+                       th:errors="*{email}"></p>
+                    <div class="form-field">
+                        <input id="password"
+                               name="password"
+                               type="password"
+                               th:field="*{password}"
+                               class="full-width"
+                               placeholder="Your Password">
+                    </div>
+                    <p th:if="${#fields.hasErrors('password')}" class="text-danger"
+                       th:errors="*{password}"></p>
+                    <button name="submit" id="submit" class="btn btn--primary btn-wide btn--large full-width" value="Register" type="submit">Register</button>
+                </fieldset>
+            </form> <!-- end form -->
+        </section>
+    </main>
+</div> <!-- end s-content -->
+<div th:replace="footer :: footer"></div>
+</body>
+</html>

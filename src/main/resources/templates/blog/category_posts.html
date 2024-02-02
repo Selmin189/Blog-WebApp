@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="blog/header :: header"></div>
+<body>
+<!-- preloader
+================================================== -->
+<div id="preloader">
+    <div id="loader" class="dots-fade">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<div id="top" class="s-wrap site-wrapper">
+    <!-- site header
+    ================================================== -->
+    <div th:replace="blog/header :: navbar"></div>
+
+    <div th:replace="blog/search :: search"></div>
+    <!-- site content
+    ================================================== -->
+    <div class="s-content content">
+        <div class="masonry-wrap">
+            <div class="masonry">
+                <div class="grid-sizer">
+                </div>
+                <article class="masonry__brick entry format-standard animate-this" th:each="post: ${postsResponse}">
+                    <div class="entry__thumb">
+                        <a class="entry__thumb-link" th:href="@{/post/{postUrl}(postUrl=${post.url})}">
+                            <img th:src="${post.imageUrl}"
+                                 alt="Card image cap" style="max-height: 550px">
+                        </a>
+                    </div>
+                    <div class="entry__text">
+                        <div class="entry__header">
+                            <h2 class="entry__title">
+                                <a th:href="@{/post/{postUrl}(postUrl=${post.url})}"
+                                   th:text="${post.title}"></a>
+                            </h2>
+                            <div class="entry__meta">
+                                    <span class="entry__meta-cat">
+                                        <a th:href="@{/post/category/{categoryId}(categoryId=${post.categoryId})}" th:text="${post.categoryId == 2 ? 'Art' : (post.categoryId == 1 ? 'Science' : (post.categoryId == 3 ? 'Sport' : 'Unknown'))}">Design</a>
+                                    </span>
+                                <span class="entry__meta-date">
+                                    <p th:text="${#temporals.format(post.createdOn, 'dd MMMM yyyy')}"></p>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="entry__excerpt">
+                            <p><span th:utext="${post.shortDescription}"></span>
+                                <a th:href="@{/post/{postUrl}(postUrl=${post.url})}">Read more</a>
+                            <p/>
+                        </div>
+                    </div>
+                </article> <!-- end article -->
+            </div>
+        </div>
+    </div> <!-- end s-content -->
+    <!-- footer
+    ================================================== -->
+    <div th:replace="footer :: footer"></div>
+</div> <!-- end s-wrap -->
+<!-- Java Script
+================================================== -->
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/plugins.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>

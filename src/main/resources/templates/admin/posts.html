@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<div th:replace="admin/header :: header"></div>
+<body>
+<div th:replace="admin/header :: navbar"></div>
+<div class="s-content content">
+    <main class="row s-styles">
+        <!-- styles
+        ================================================== -->
+        <section id="styles" class="column large-full">
+            <div class="s-search">
+                <div class="search-block">
+                    <form role="search" method="get" class="search-form" th:action="@{/admin/posts/search}">
+                        <label>
+                            <span class="hide-content">Search for:</span>
+                            <input type="search" class="search-field" placeholder="Type Keywords" value="" name="query"
+                                   title="Search for:" autocomplete="off">
+                        </label>
+                        <input type="submit" class="search-submit" value="Search">
+                    </form>
+                    <a href="#" title="Close Search" class="search-close">Close</a>
+
+                </div>  <!-- end search-block -->
+                <!-- search modal trigger -->
+                <a href="#" class="search-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         style="fill:rgba(0, 0, 0, 1);transform-ms-filter:">
+                        <path
+                            d="M10,18c1.846,0,3.543-0.635,4.897-1.688l4.396,4.396l1.414-1.414l-4.396-4.396C17.365,13.543,18,11.846,18,10 c0-4.411-3.589-8-8-8s-8,3.589-8,8S5.589,18,10,18z M10,4c3.309,0,6,2.691,6,6s-2.691,6-6,6s-6-2.691-6-6S6.691,4,10,4z"></path>
+                    </svg>
+                    <span>Search</span>
+                </a>
+                <span class="search-line"></span>
+            </div> <!-- end s-search -->
+            <div class="row add-bottom">
+
+                <div class="column large-full">
+                    <h3>Blog Posts List</h3>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                            <th style="width:5%">#</th>
+                            <th style="width:20%">Post Title</th>
+                            <th style="width:35%">Post Short Description</th>
+                            <th style="width:20%">Post Created On</th>
+                            <th style="width:20%">Actions</th>
+                            </thead>
+                            <tbody>
+                            <tr th:each="post, postStat : ${posts}">
+                                <td th:text="${postStat.count}">1</td>
+                                <td th:text="${post.title}">post title</td>
+                                <td th:text="${post.shortDescription}">post short description</td>
+                                <td th:text="${#temporals.format(post.createdOn,'dd MMM yyyy')}">10 JUL 2022</td>
+                                <td>
+                                    <a th:href="@{/admin/posts/{postId}/edit(postId=${post.id})}"
+                                       class="btn btn--primary btn--medium"> Edit</a>
+                                    <a th:href="@{/admin/posts/{postId}/delete(postId=${post.id})}"
+                                       class="btn btn--stroke btn--medium">Delete</a>
+                                    <a th:href="@{/admin/posts/{postUrl}/view(postUrl=${post.url})}"
+                                       class="btn btn--medium">View</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div> <!-- end row -->
+        </section> <!-- end styles -->
+    </main>
+</div> <!-- end s-content -->
+<!-- JS -->
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/plugins.js"></script>
+<script src="/js/main.js"></script>
+<div th:replace="footer :: footer"></div>
+</body>
+</html>
